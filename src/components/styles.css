@@ -1,0 +1,28 @@
+.shows-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 80%;
+}
+
+.tv-show {
+    display: flex;
+    flex-direction: column;
+    margin: 0.75rem;
+}
+
+img {
+    max-width: 210px;
+    max-height: 295px;
+}
+
+.container {
+    display: flex;
+}
+
+.section-fav {
+    display: inline;
+    width: 300px;
+}
