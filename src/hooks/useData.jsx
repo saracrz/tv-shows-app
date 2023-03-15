@@ -1,18 +1,22 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
 
 export const useData = () => {
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
 
-    const getData = async () => {
-      const response = await fetch(`https://api.tvmaze.com/shows`);
-      const tvShows = await response.json();
+  const addPage = () => setPage(page + 1);
 
-      setData(tvShows);
-   }
+  const getData = async () => {
+    const response = await fetch(`https://api.tvmaze.com/shows?page=${page}`);
+    const tvShows = await response.json();
 
-   return {
-    getData, 
+    setData(tvShows);
+  };
+
+  return {
+    addPage,
+    getData,
     data,
-   }
-}
-
+    page,
+  };
+};

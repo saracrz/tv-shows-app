@@ -1,18 +1,24 @@
-import { useEffect, useState } from 'react'
-import { useData } from '../hooks/useData.jsx'
-import { TVShowsSection } from '../components/TVShowsSection.jsx'
+import { useEffect, useState } from "react";
+import { useData } from "../hooks/useData.jsx";
+import { TVShowsSection } from "../components/TVShowsSection.jsx";
+import { Pagination } from "../components/Pagination";
 
 export const Homepage = () => {
-    const { data, getData } = useData();
+  const { data, page, addPage, getData } = useData();
+  const [loading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        getData(); 
-    }, [])
+  useEffect(() => {
+    getData();
+    setIsLoading(false);
+  }, [page]);
 
-    return (
-        <>
-        <h1>Home</h1>
-        <TVShowsSection shows={data} />
-        </>
-    )
-}
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
+    <>
+      <Pagination page={page} addPagination={() => addPage(page)} />
+      <TVShowsSection shows={data} />
+      <Pagination page={page} addPagination={() => addPage(page)} />
+    </>
+  );
+};
