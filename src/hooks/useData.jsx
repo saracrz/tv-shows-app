@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const useData = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
+  const [query, setQuery] = useState('')
+  const [results, setResults] = useState([]);
 
-  const addPage = () => setPage(page + 1);
+  const increasePage = () => setPage(page + 1);
+  const decreasePage = () => setPage(page - 1);
+
 
   const getData = async () => {
     const response = await fetch(`https://api.tvmaze.com/shows?page=${page}`);
@@ -13,10 +17,28 @@ export const useData = () => {
     setData(tvShows);
   };
 
+  const searchShows = async () => {
+    const response = await fetch(`https://api.tvmaze.com/search/shows?q=${query}`);
+    const result = await response.json();
+    const resultName = result.map(element => {
+      return element.show
+    })
+
+   setResults(resultName);
+   return result;
+  }
+
+
   return {
-    addPage,
+    decreasePage,
+    increasePage,
     getData,
+    searchShows, 
+    setResults,
+    setQuery, 
     data,
     page,
+    query,
+    results,
   };
 };
