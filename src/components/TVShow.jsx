@@ -1,9 +1,10 @@
+import {IconHeart} from '@tabler/icons-react'
 import './styles.css'
 
 export const TVShow = ({ title, image, addFavourite}) => {
     return (
-        <div>
-          <h3>{title}</h3>
+        <div className='tv-show'>
+          <IconHeart onClick={addFavourite}/>
           <img src={image} />
         </div>
     )
