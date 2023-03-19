@@ -39,20 +39,28 @@ export const TVShowsSection = ({ shows }) => {
           <>
             {results.length
               ? results.map((result) => (
-                  <div className="single-show">
+               <div className="single-show">
                     <TVShow
-                      key={result.id}
-                      image={result.image.medium}
                       addFavourite={() => addFavouriteShow(result?.name)}
+                      key={result.id}
+                      genres={singleshow?.genres}
+                      image={result.image.medium}
+                      ratingAverage={result?.rating?.average}
+                      title={result?.name}
+                      ended={result?.ended}
                     />
-                  </div>
+               </div>
                 ))
               : shows.map((singleshow) => (
                   <div className="single-show">
                     <TVShow
-                      key={singleshow?.id}
-                      image={singleshow?.image?.medium}
                       addFavourite={() => addFavouriteShow(singleshow?.name)}
+                      key={singleshow?.id}
+                      genres={singleshow?.genres}
+                      image={singleshow?.image?.medium}
+                      ratingAverage={singleshow?.rating?.average}
+                      title={singleshow?.name}
+                      ended={singleshow?.ended}
                     />
                   </div>
                 ))}

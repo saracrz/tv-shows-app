@@ -13,7 +13,7 @@ export const useData = () => {
   const getData = async () => {
     const response = await fetch(`https://api.tvmaze.com/shows?page=${page}`);
     const tvShows = await response.json();
-
+    console.log(tvShows);
     setData(tvShows);
   };
 
@@ -21,7 +21,7 @@ export const useData = () => {
     const response = await fetch(`https://api.tvmaze.com/search/shows?q=${query}`);
     const result = await response.json();
     const resultName = result.map(element => {
-      return element.show
+      return element.show;
     })
 
    setResults(resultName);
