@@ -120,7 +120,6 @@ img {
   display: none;
   position: absolute;
   bottom: 6px;
-  background-color: #fff;
   max-height: 120px;
   padding: 10px;
   width: 190px;
@@ -128,6 +127,6 @@ img {
 
 .hover-div:hover .hover-text {
   display: block;
-  background-color: #767779a7;
+  background-color: #767779b9;
 }
 

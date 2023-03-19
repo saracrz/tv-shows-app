@@ -43,8 +43,8 @@ export const TVShowsSection = ({ shows }) => {
                     <TVShow
                       addFavourite={() => addFavouriteShow(result?.name)}
                       key={result.id}
-                      genres={singleshow?.genres}
-                      image={result.image.medium}
+                      genres={result?.genres}
+                      image={result?.image?.medium}
                       ratingAverage={result?.rating?.average}
                       title={result?.name}
                       ended={result?.ended}
