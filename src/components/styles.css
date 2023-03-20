@@ -13,6 +13,18 @@
   }
 }
 
+.episode {
+  margin: 10px;
+}
+
+.episodes-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+}
+
 .favourite-item {
   display: flex;
   justify-content: space-between;
@@ -22,6 +34,10 @@
   color: gray;
   cursor: pointer;
   width: 18px;
+}
+
+h1 {
+  margin-left: 1rem;
 }
 
 .shows-list {
@@ -50,6 +66,12 @@ img {
   color: gray;
   cursor: pointer;
   margin: 8px;
+}
+
+.seasons-container {
+  align-items: center;
+  display: flex;
+  margin-left: 1rem;
 }
 
 .search-container {
