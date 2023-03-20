@@ -1,7 +1,14 @@
-import { Homepage } from './pages/Homepage.jsx'
+import { Homepage, Seasonpage, EpisodesPage } from './pages';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 export const App = () => {
   return(
-    <Homepage />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Homepage />} />
+        <Route path='/seasons/:id' element={<Seasonpage />} />
+        <Route path='/season/:id/episodes' element={<EpisodesPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
