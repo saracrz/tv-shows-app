@@ -4,26 +4,35 @@ import { TVShowsSection, Search } from "../components";
 import { Pagination } from "../components/Pagination";
 
 export const Homepage = () => {
-  const { data, page, decreasePage, increasePage, getData, results, query } = useData();
-  const [loading, setIsLoading] = useState(true);
+  const {
+    data,
+    loading,
+    page,
+    decreasePage,
+    increasePage,
+    getData,
+    setIsLoading,
+  } = useData();
 
-  
   useEffect(() => {
     getData();
     setIsLoading(false);
-  }, [page]);
-
+  }, [page, loading]);
 
   return loading ? (
     <div>Loading...</div>
   ) : (
     <>
-    <><h1>Movies</h1></>
-    <>
-      <Pagination page={page} onLeftPagination={() => decreasePage(page)} onRightPagination={() => increasePage(page)} />
-      <TVShowsSection shows={ data} />
-      <Pagination page={page} addPagination={() => addPage(page)} />
-    </>
+      <h1>Movies</h1>
+      <>
+        <Pagination
+          page={page}
+          onLeftPagination={() => decreasePage(page)}
+          onRightPagination={() => increasePage(page)}
+        />
+        <TVShowsSection shows={data} />
+        <Pagination page={page} addPagination={() => addPage(page)} />
+      </>
     </>
   );
 };
