@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
-import { TVShow } from "./TVShow";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import { TVShow } from "../components/TVShow";
 import { useData } from "../hooks/useData.jsx";
-import { FavouritesSection } from "./FavouritesSection";
-import { Search } from "./Search";
-import "./styles.css";
+import { FavouritesSection } from "../components/FavouritesSection";
+import { Search } from "../components/Search";
+import "../components/styles.css";
 
 export const TVShowsSection = ({ shows }) => {
   const {searchShows, results, query, setQuery } = useData();
@@ -31,13 +33,12 @@ export const TVShowsSection = ({ shows }) => {
     setQuery('');
   };
 
-
   return (
     <>
       <div className="container">
         <div className="shows-list">
           <>
-            {results.length
+            {results.length && results.length
               ? results.map((result) => (
                <div className="single-show">
                     <TVShow
@@ -51,7 +52,7 @@ export const TVShowsSection = ({ shows }) => {
                     />
                </div>
                 ))
-              : shows.map((singleshow) => (
+              : shows.length && shows.map((singleshow) => (
                   <div className="single-show">
                     <TVShow
                       addFavourite={() => addFavouriteShow(singleshow?.name)}
@@ -62,6 +63,7 @@ export const TVShowsSection = ({ shows }) => {
                       title={singleshow?.name}
                       ended={singleshow?.ended}
                     />
+                    <Link to={`/seasons/${singleshow?.id}`}>Seasons</Link>
                   </div>
                 ))}
           </>

@@ -1,3 +1,3 @@
 export * from './FavouritesSection';
-export * from './TVShowsSection';
+export * from '../containers/TVShowsSection';
 export * from './Search';
