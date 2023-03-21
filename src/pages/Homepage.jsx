@@ -23,7 +23,7 @@ export const Homepage = () => {
     <div>Loading...</div>
   ) : (
     <>
-      <h1>Movies</h1>
+      <h1>TV-Shows</h1>
       <>
         <Pagination
           page={page}

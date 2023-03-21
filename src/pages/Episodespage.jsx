@@ -1,4 +1,5 @@
 import { EpisodesList } from "../containers/EpisodesList.jsx";
+import { Button } from "../components";
 import { useEffect } from "react";
 import { useData } from "../hooks/useData.jsx";
 import { useParams, useNavigate } from "react-router-dom";
@@ -18,7 +19,7 @@ export const EpisodesPage = () => {
   ) : (
     <>
       <div className="seasons-container">
-        <button onClick={() => navigate(`/`)}>Home</button>
+        <Button onClick={() => navigate(`/`)} label='Home'/>
         <h1>Episodes</h1>
       </div>
       <EpisodesList episodes={episodes} />
