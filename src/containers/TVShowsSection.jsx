@@ -10,11 +10,12 @@ export const TVShowsSection = ({ shows }) => {
   const [favourites, setFavourites] = useState([]);
 
   const saveToLocalStorage = (items) => {
-    localStorage.setItem("favourites", JSON.stringify(items));
+      localStorage.setItem("favourites", JSON.stringify(items));
   };
 
   useEffect(() => {
-    setFavourites(JSON.parse(localStorage.getItem("favourites")));
+      const favourites =  JSON.parse(localStorage.getItem("favourites")) || []
+      setFavourites(favourites);
   }, []);
 
   const addFavouriteShow = (show) => {
