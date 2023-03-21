@@ -9,14 +9,13 @@ export const TVShowsSection = ({ shows }) => {
   const { searchShows, results, query, setQuery } = useData();
   const [favourites, setFavourites] = useState([]);
 
-  useEffect(() => {
-    const showFavourites = JSON.parse(localStorage.getItem("favourites"));
-    setFavourites(showFavourites);
-  }, []);
-
   const saveToLocalStorage = (items) => {
     localStorage.setItem("favourites", JSON.stringify(items));
   };
+
+  useEffect(() => {
+    setFavourites(JSON.parse(localStorage.getItem("favourites")));
+  }, []);
 
   const addFavouriteShow = (show) => {
     const newFavouriteList = [...favourites, show];
@@ -84,6 +83,12 @@ export const TVShowsSection = ({ shows }) => {
             favourites={favourites}
             onRemoveFav={removeFavouriteShow}
           />
+          {/* {  favourites && favourites.map((favourite) => (
+          <div className='favourite-item' key={favourite.id}>
+          <li>{favourite}</li>
+          <IconX onClick={removeFavouriteShow}/>
+        </div>
+      ))} */}
         </div>
       </div>
     </>
