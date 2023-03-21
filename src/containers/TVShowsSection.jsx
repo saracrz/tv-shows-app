@@ -83,12 +83,6 @@ export const TVShowsSection = ({ shows }) => {
             favourites={favourites}
             onRemoveFav={removeFavouriteShow}
           />
-          {/* {  favourites && favourites.map((favourite) => (
-          <div className='favourite-item' key={favourite.id}>
-          <li>{favourite}</li>
-          <IconX onClick={removeFavouriteShow}/>
-        </div>
-      ))} */}
         </div>
       </div>
     </>
