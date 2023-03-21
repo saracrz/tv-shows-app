@@ -1,76 +1,89 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import { TVShow } from "../components/TVShow";
 import { useData } from "../hooks/useData.jsx";
 import { FavouritesSection } from "../components/FavouritesSection";
 import { Search } from "../components/Search";
-import "../components/styles.css";
+import "./container.css";
 
 export const TVShowsSection = ({ shows }) => {
-  const {searchShows, results, query, setQuery } = useData();
+  const { searchShows, results, query, setQuery } = useData();
   const [favourites, setFavourites] = useState([]);
 
+  useEffect(() => {
+    const showFavourites = JSON.parse(localStorage.getItem("favourites"));
+    setFavourites(showFavourites);
+  }, []);
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("favourites", JSON.stringify(items));
+  };
+
   const addFavouriteShow = (show) => {
-    const favouriteList = [...favourites, show];
-    setFavourites(favouriteList);
+    const newFavouriteList = [...favourites, show];
+    setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
   };
 
   const removeFavouriteShow = () => {
     const items = favourites;
-    const removed = items.splice(-1); 
-    const itemsCopy = [...items]
+    const removed = items.splice(-1);
+    const itemsCopy = [...items];
     setFavourites(itemsCopy);
+    saveToLocalStorage(itemsCopy);
   };
 
-  const handleChange = (event) => {
+  const handleChangeQuery = (event) => {
     setQuery(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     searchShows();
-    setQuery('');
+    setQuery("");
   };
 
   return (
     <>
-      <div className="container">
+      <div className="tv-shows-container">
         <div className="shows-list">
-          <>
-            {results.length && results.length
-              ? results.map((result) => (
-               <div className="single-show">
-                    <TVShow
-                      addFavourite={() => addFavouriteShow(result?.name)}
-                      key={result.id}
-                      genres={result?.genres}
-                      image={result?.image?.medium}
-                      ratingAverage={result?.rating?.average}
-                      title={result?.name}
-                      ended={result?.ended}
-                    />
-               </div>
-                ))
-              : shows.length && shows.map((singleshow) => (
-                  <div className="single-show">
-                    <TVShow
-                      addFavourite={() => addFavouriteShow(singleshow?.name)}
-                      key={singleshow?.id}
-                      genres={singleshow?.genres}
-                      image={singleshow?.image?.medium}
-                      ratingAverage={singleshow?.rating?.average}
-                      title={singleshow?.name}
-                      ended={singleshow?.ended}
-                    />
-                    <Link to={`/seasons/${singleshow?.id}`}>Seasons</Link>
-                  </div>
-                ))}
-          </>
+          {results.length > 0
+            ? results.map((result) => (
+                <div className="single-show" key={result?.id}>
+                  <TVShow
+                    addFavourite={() => addFavouriteShow(result?.name)}
+                    genres={result.genres}
+                    image={result?.image?.medium}
+                    ratingAverage={result.rating.average}
+                    title={result.name}
+                    ended={result.ended}
+                  />
+                </div>
+              ))
+            : shows?.length &&
+              shows.map((singleshow) => (
+                <div className="single-show" key={singleshow.id}>
+                  <TVShow
+                    addFavourite={() => addFavouriteShow(singleshow?.name)}
+                    genres={singleshow.genres}
+                    image={singleshow?.image?.medium}
+                    ratingAverage={singleshow.rating.average}
+                    title={singleshow.name}
+                    ended={singleshow.ended}
+                    url={`/seasons/${singleshow?.id}`}
+                  />
+                </div>
+              ))}
         </div>
         <div className="section-fav">
-        <Search value={query} onChange={handleChange} onSubmit={handleSubmit} />
-        <FavouritesSection favourites={favourites} onRemoveFav={removeFavouriteShow}/>
+          <Search
+            value={query}
+            onChange={handleChangeQuery}
+            onSubmit={handleSubmit}
+          />
+          <FavouritesSection
+            favourites={favourites}
+            onRemoveFav={removeFavouriteShow}
+          />
         </div>
       </div>
     </>
