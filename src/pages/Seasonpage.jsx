@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useData } from "../hooks/useData.jsx";
 import { useParams, useNavigate } from "react-router-dom";
 
-export const Seasonpage = () => {
+export const SeasonPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { getSeasons, seasons, loading, setIsLoading } = useData();

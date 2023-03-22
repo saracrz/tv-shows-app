@@ -1,3 +1,3 @@
-export * from './Seasonpage.jsx';
-export * from './Homepage.jsx';
-export * from './Episodespage.jsx';
+export * from './SeasonPage.jsx';
+export * from './HomePage.jsx';
+export * from './EpisodesPage.jsx';
