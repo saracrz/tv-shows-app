@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useData } from "../hooks/useData.jsx";
-import { TVShowsSection, Search } from "../components";
+import { TVShowsSection } from "../components";
 import { Pagination } from "../components/Pagination";
 
 export const HomePage = () => {

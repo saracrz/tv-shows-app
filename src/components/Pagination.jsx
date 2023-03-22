@@ -1,7 +1,6 @@
 import { IconChevronRight } from '@tabler/icons-react';
 import { IconChevronLeft } from '@tabler/icons-react';
 
-
 export const Pagination = ({page, onRightPagination, onLeftPagination }) => {
 
     return (

@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { IconSearch } from '@tabler/icons-react';
 
 export const Search = ({ results, onSubmit, onChange, value }) => {
